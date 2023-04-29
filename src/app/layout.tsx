@@ -1,6 +1,8 @@
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 import NavBar from "@/components/navbar"
+import Sidebar from "@/components/sidebar"
+import SiteLinksInfo from "@/components/siteLinksInfo"
 
 export const metadata = {
   title: process.env.HomePage_Title,
@@ -18,6 +20,8 @@ export default function RootLayout({
         <Header />
         <NavBar />
         {children}
+        <Sidebar />
+        <SiteLinksInfo />
         <Footer />
       </body>
     </html>
