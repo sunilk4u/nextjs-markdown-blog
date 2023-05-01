@@ -3,6 +3,7 @@ import Header from "@/components/header"
 import NavBar from "@/components/navbar"
 import Sidebar from "@/components/sidebar"
 import SiteLinksInfo from "@/components/siteLinksInfo"
+import "../styles/globals.css";
 
 export const metadata = {
   title: process.env.HomePage_Title,
