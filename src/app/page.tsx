@@ -1,19 +1,14 @@
-import fs from "fs";
-
-const getPostMetaData = () => {
-  const files = fs.readdirSync("src/posts");
-  const mdPosts = files.filter((file) => file.endsWith(".md"));
-  const slugs = mdPosts.map((post) => post.replace(".md", ""));
-
-  return slugs;
-};
+import { getHomePostMetaData } from "@/components/getPostMetaData";
+import PostPreview from "@/components/postPreview";
+import { postPreview } from "@/types/interfaces";
 
 const HomePage = () => {
-  const data = getPostMetaData();
+  const data: postPreview[] = getHomePostMetaData();
+
   return (
     <div>
       {data.map((post) => (
-        <h2 key={post}>{post}</h2>
+        <PostPreview key={post.slug} post={post}/>
       ))}
     </div>
   );
