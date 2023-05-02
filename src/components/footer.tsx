@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <footer>
         <div>
-          <p>Copyright ©&nbsp;{year} {process.env.blogUrl}</p>
+          <p>Copyright ©&nbsp;{year} {process.env.blogUrl} | built by <a href="https://github.com/sunilk4u">Sunil Kumar</a></p>
         </div>
       </footer>
     </footer>
