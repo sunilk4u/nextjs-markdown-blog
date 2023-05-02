@@ -1,4 +1,4 @@
-import { postPreview } from "@/types/interfaces";
+import { postData, postPreview } from "@/types/interfaces";
 import fs from "fs";
 import matter from "gray-matter";
 
@@ -17,8 +17,8 @@ export const getHomePostMetaData = (): postPreview[] => {
   return allPostMetaData;
 };
 
-export const getPostContentData = (slug: string) => {
-  const postData = matter.read("src/posts/" + slug + ".md");
-
-  return postData.content;
+export const getPostContentData = (slug: string): postData => {
+  const postData: any = matter.read("src/posts/" + slug + ".md");
+  
+  return postData;
 }

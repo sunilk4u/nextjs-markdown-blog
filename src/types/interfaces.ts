@@ -3,5 +3,10 @@ export interface postPreview {
     subtitle?: string;
     date: string;
     categories: string[];
-    slug: string;
+    slug?: string;
+}
+
+export interface postData {
+    content: string;
+    data: postPreview;
 }
