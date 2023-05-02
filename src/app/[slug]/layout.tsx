@@ -4,5 +4,9 @@ export const metadata = {
 };
 
 export default function postlayout({children}: {children: React.ReactNode}) {
-
+  return (
+    <main>
+      {children}
+    </main>
+  )
 }
