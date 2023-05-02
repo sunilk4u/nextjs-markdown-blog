@@ -1,6 +1,9 @@
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <div>
+      <h3>Advertisement</h3>
+      <p>this is reserved for Advertisement and promotion section</p>
+    </div>
   )
 }
 
