@@ -4,7 +4,7 @@ const Header = () => {
       <div>
         <div>
           <h1>
-            <a href="https://thecuriouscorp.com/">
+            <a href="/">
               {process.env.HomePage_Title}
             </a>
           </h1>
