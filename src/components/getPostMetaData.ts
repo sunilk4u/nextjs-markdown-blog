@@ -42,6 +42,12 @@ export const getPostContentData = (slug: string): postData => {
   return postData;
 };
 
+export const getPageContentData = (slug: string): postData => {
+  const postData: any = matter.read("src/blogPages/" + slug + ".md");
+
+  return postData;
+};
+
 
 export const getAllCategories = () => categoryData.allCategories;
 export const getAllCategoriesData = () => categoryData;
