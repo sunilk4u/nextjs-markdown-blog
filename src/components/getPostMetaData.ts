@@ -11,6 +11,19 @@ const categoryData: any = {
   data: {},
 };
 
+mdPosts.map((post) => {
+  const postData = matter.read("src/posts/" + post);
+
+  postData.data.categories.forEach((category: string) => {
+    category = category.replaceAll(" ", "-");
+    if (!allCategories.includes(category)) {
+      allCategories.push(category);
+      categoryData.data[category + ''] = [];
+    }
+    categoryData.data[category + ''].push(post.replaceAll(".md", ""));
+  });
+});
+
 export const getHomePostMetaData = (): postPreview[] => {
   const allPostMetaData: postPreview[] = mdPosts.map((post) => {
     const metaData = matter.read("src/posts/" + post);
@@ -29,18 +42,7 @@ export const getPostContentData = (slug: string): postData => {
   return postData;
 };
 
-export const getPostCategories = () => {
-  mdPosts.map((post) => {
-    const postData = matter.read("src/posts/" + post);
 
-    postData.data.categories.forEach((category: string) => {
-      if (!allCategories.includes(category)) {
-        allCategories.push(category);
-        categoryData.data[category] = [];
-      }
-      categoryData.data[category].push(post);
-    });
-  });
+export const getAllCategories = () => categoryData.allCategories;
+export const getAllCategoriesData = () => categoryData;
 
-  return categoryData;
-};

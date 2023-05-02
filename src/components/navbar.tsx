@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { getPostCategories } from "./getPostMetaData";
+import { getAllCategories } from "./getPostMetaData";
 
 const NavBar = () => {
-  const categoryData = getPostCategories();
+  const categoryData = getAllCategories();
 
   return (
     <nav>
       <ul>
-        {categoryData.allCategories.map((category: string) => (
+        {categoryData.map((category: string) => (
           <li key={category}>
             <Link href={`category/${category.replaceAll(" ", "-")}`}>
               {category}

@@ -1,10 +1,10 @@
-import { getHomePostMetaData } from "@/components/getPostMetaData";
+import { getHomePostMetaData, intializeCategories } from "@/components/getPostMetaData";
 import PostPreview from "@/components/postPreview";
 import { postPreview } from "@/types/interfaces";
 
 const HomePage = () => {
   const data: postPreview[] = getHomePostMetaData();
-
+  
   return (
     <div>
       {data.map((post) => (
