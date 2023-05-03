@@ -5,7 +5,7 @@ const PostPreview = ({ post }: { post: postPreview }) => {
   // console.log(post);
   
   return (
-    <div key={post.slug} className="border border-gray-300 rounded-lg">
+    <div key={post.slug} className="border hover:shadow-sm border-gray-400 rounded-lg m-4 p-2 hover:bg-gray-200">
       <Link href={`${post.slug}`}>
         <h2 className="text-green-600 font-semibold text-xl px-2 pt-2">{post.title}</h2>
         <p className="text-gray-600 px-2 pt-2">{post.date}</p>

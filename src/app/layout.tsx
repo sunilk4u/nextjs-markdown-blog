@@ -23,8 +23,10 @@ export default function RootLayout({
         <NavBar>
           <NavbarCategories />
         </NavBar>
-        {children}
-        <Sidebar />
+        <div className="container mx-auto my-10 md:grid md:grid-cols-3 md:gap-12">
+          <div className="md:col-span-2">{children}</div>
+          <div className="hidden md:block"><Sidebar /></div>
+        </div>
         <SiteLinksInfo />
         <Footer />
       </body>
