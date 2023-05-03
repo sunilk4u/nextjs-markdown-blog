@@ -1,9 +1,9 @@
 const Header = () => {
   return (
-    <header>
-      <div>
-        <div>
-          <h1>
+    <header className="bg-green-600">
+      <div className="container mx-auto">
+        <div className="flex items-center h-32">
+          <h1 className="text-6xl font-semibold text-white">
             <a href="/">
               {process.env.HomePage_Title}
             </a>
