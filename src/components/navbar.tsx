@@ -1,24 +1,19 @@
-import Link from "next/link";
-import { getAllCategories } from "./getPostMetaData";
+"use client";
+import { Children, useState } from "react";
 
-const NavBar = () => {
-  const categoryData = getAllCategories();
+const NavBar = ({ children }: { children: React.ReactNode }) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <nav className="bg-green-800">
       <div className="container mx-auto">
-        <ul className="flex items-center h-14">
-          {categoryData.map((category: string) => (
-            <li
-              key={category}
-              className="flex items-center h-full text-white text-lg px-5 uppercase hover:bg-green-600 transition ease-in-out"
-            >
-              <Link href={`category/${category.replaceAll(" ", "-")}`}>
-                {category.replace("-", " ")}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <button
+          className="text-xl mx-2 p-2 text-white md:hidden"
+          onClick={() => setOpen(!open)}
+        >
+          &#9776; Menu
+        </button>
+        <div id="navbutton" className={`${open? "": "hidden"} md:block`}>{children}</div>
       </div>
     </nav>
   );
