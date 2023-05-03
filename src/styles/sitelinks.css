@@ -1,0 +1,6 @@
+.sitelinks li{
+  color: white;
+}
+.sitelinks li:hover {
+  color: rgb(34, 197, 94);
+}
