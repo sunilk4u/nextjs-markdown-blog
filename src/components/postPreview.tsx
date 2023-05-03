@@ -5,11 +5,11 @@ const PostPreview = ({ post }: { post: postPreview }) => {
   // console.log(post);
   
   return (
-    <div key={post.slug}>
+    <div key={post.slug} className="border border-gray-300 rounded-lg">
       <Link href={`${post.slug}`}>
-        <h2>{post.title}</h2>
-        <p>{post.date}</p>
-        {post.subtitle && <p>{post.subtitle}</p>}
+        <h2 className="text-green-600 font-semibold text-xl px-2 pt-2">{post.title}</h2>
+        <p className="text-gray-600 px-2 pt-2">{post.date}</p>
+        {post.subtitle && <p className="px-2 pt-2">{post.subtitle}</p>}
       </Link>
     </div>
   );
