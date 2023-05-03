@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "../styles/sitelinks.css"
 
 const SiteLinksInfo = () => {
@@ -7,12 +8,12 @@ const SiteLinksInfo = () => {
         <div className="md:flex-col md:m-4 p-3">
           <h4 className="text-white text-lg font-medium">Important Links</h4>
           <ul className="grid grid-cols-1 gap-3 my-2 sitelinks">
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Disclaimer</li>
-            <li>Privacy Policy</li>
-            <li>DCMA</li>
-            <li>Contact us</li>
+            <Link href="/"><li>Home</li></Link>
+            <Link href="/page/about-us"><li>About Us</li></Link>
+            <Link href="/page/about-us"><li>Disclaimer</li></Link>
+            <Link href="/page/about-us"><li>Privacy Policy</li></Link>
+            <Link href="/page/about-us"><li>DCMA</li></Link>
+            <Link href="/page/about-us"><li>Contact us</li></Link>
           </ul>
         </div>
         <div className="md:flex-col md:m-4 p-3 md:w-[30%] text-white">
@@ -25,9 +26,9 @@ const SiteLinksInfo = () => {
         <div className="md:flex-col md:m-4 p-3">
           <h4 className="text-white text-lg font-medium">Follow Us</h4>
           <ul className="grid grid-cols-1 gap-3 my-2 sitelinks">
-            <li>Facebook</li>
-            <li>Instagram</li>
-            <li>Twitter</li>
+            <Link href="/"><li>Facebook</li></Link>
+            <Link href="/"><li>Instagram</li></Link>
+            <Link href="/"><li>Twitter</li></Link>
           </ul>
         </div>
       </div>
