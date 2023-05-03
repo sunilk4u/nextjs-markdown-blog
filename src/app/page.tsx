@@ -1,4 +1,4 @@
-import { getHomePostMetaData, intializeCategories } from "@/components/getPostMetaData";
+import { getHomePostMetaData } from "@/components/getPostMetaData";
 import PostPreview from "@/components/postPreview";
 import { postPreview } from "@/types/interfaces";
 
