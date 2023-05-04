@@ -1,5 +1,5 @@
 "use client";
-import { Children, useState } from "react";
+import { useState } from "react";
 
 const NavBar = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
