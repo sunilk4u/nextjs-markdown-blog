@@ -56,9 +56,9 @@ export const getAllPages = () => {
 };
 
 export const getPageContentData = (slug: string): postData => {
-  const postData: any = matter.read("src/blogPages/" + slug + ".md");
-
-  return postData;
+  const pageData: any = matter.read("src/blogPages/" + slug + ".md");
+  pageData.data.slug = slug;
+  return pageData;
 };
 
 export const getAllCategories = async () => {

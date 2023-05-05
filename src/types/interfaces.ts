@@ -4,6 +4,7 @@ export interface postPreview {
     date: string;
     categories: string[];
     slug?: string;
+    description?: string
 }
 
 export interface postData {
