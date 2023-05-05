@@ -10,7 +10,7 @@ export const generateStaticParams = async () => {
   const slugs = [];
   for (let i = 2; i <= totalPages; i++) {
     slugs.push({
-      slug: `posts/${i}`,
+      pageno: `${i}`,
     });
   }
   return slugs;
