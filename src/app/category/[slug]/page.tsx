@@ -1,21 +1,34 @@
-import { getAllCategoriesData, getPostContentData } from "@/components/getPostMetaData";
+import {
+  getAllCategories,
+  getAllCategoriesData,
+  getPostContentData,
+  initializeCategoryData,
+} from "@/components/getPostMetaData";
 import PostPreview from "@/components/postPreview";
 import { postPreview } from "@/types/interfaces";
 
-const CategoryPage = ({ params }: { params: { slug: string } }) => {
-  const categoryData = getAllCategoriesData();
-  const categoryPostsData: postPreview[] = [];
+export const generateStaticParams = async () => {
+  const catData = await getAllCategories();
 
-  categoryData.data[params.slug + ''].forEach((post: string) => {
-    const metaData: any = getPostContentData(post);
+  return catData.map((cat: string) => ({
+    slug: cat.replaceAll(" ", "-"),
+  }));
+};
 
-    categoryPostsData.push(metaData.data);
-  })
+const CategoryPage = async ({ params }: { params: { slug: string } }) => {
+  const categoryData = await getAllCategoriesData();
+
+  const categoryPostsData: postPreview[] = await Promise.all(
+    categoryData.data[params.slug + ""].map(async (post: string) => {
+      const metaData: any = await getPostContentData(post);
+      return metaData.data;
+    })
+  );
 
   return (
     <div>
       {categoryPostsData.map((post) => (
-        <PostPreview key={post.slug} post={post}/>
+        <PostPreview key={post.slug} post={post} />
       ))}
     </div>
   );

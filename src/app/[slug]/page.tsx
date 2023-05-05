@@ -1,11 +1,21 @@
-import { getPostContentData } from "@/components/getPostMetaData";
+import {
+  getHomePostMetaData,
+  getPostContentData,
+} from "@/components/getPostMetaData";
 import { postData } from "@/types/interfaces";
 import Markdown from "markdown-to-jsx";
 import Link from "next/link";
 
-const Post = ({ params }: { params: { slug: string } }) => {
+export const generateStaticParams = async () => {
+  const allPostData = getHomePostMetaData();
+  return allPostData.map((post) => ({
+    slug: post.slug,
+  }));
+};
+
+const Post = async ({ params }: { params: { slug: string } }) => {
   const slug: string = params.slug;
-  const postData: postData = getPostContentData(slug);
+  const postData: postData = await getPostContentData(slug);
 
   return (
     <article className="w-[90%] mx-auto">

@@ -5,24 +5,29 @@ import matter from "gray-matter";
 const files = fs.readdirSync("src/posts");
 const mdPosts = files.filter((file) => file.endsWith(".md"));
 
-const allCategories: string[] = [];
-const categoryData: any = {
-  allCategories,
-  data: {},
-};
 
-mdPosts.map((post) => {
-  const postData = matter.read("src/posts/" + post);
+export const initializeCategoryData = () => {
+  const allCategories: string[] = [];
+  const categoryData: any = {
+    allCategories,
+    data: {},
+  };
+  
+  mdPosts.map((post) => {
+    const postData = matter.read("src/posts/" + post);
 
-  postData.data.categories.forEach((category: string) => {
-    category = category.replaceAll(" ", "-");
-    if (!allCategories.includes(category)) {
-      allCategories.push(category);
-      categoryData.data[category + ''] = [];
-    }
-    categoryData.data[category + ''].push(post.replaceAll(".md", ""));
+    postData.data.categories.forEach((category: string) => {
+      category = category.replaceAll(" ", "-");
+      if (!allCategories.includes(category)) {
+        allCategories.push(category);
+        categoryData.data[category + ""] = [];
+      }
+      categoryData.data[category + ""].push(post.replaceAll(".md", ""));
+    });
   });
-});
+
+  return categoryData;
+};
 
 export const getHomePostMetaData = (): postPreview[] => {
   const allPostMetaData: postPreview[] = mdPosts.map((post) => {
@@ -36,10 +41,18 @@ export const getHomePostMetaData = (): postPreview[] => {
   return allPostMetaData;
 };
 
-export const getPostContentData = (slug: string): postData => {
+export const getPostContentData = async (slug: string) => {
   const postData: any = matter.read("src/posts/" + slug + ".md");
-
+  postData.data.slug = slug;
   return postData;
+};
+
+export const getAllPages = () => {
+  const files = fs.readdirSync("src/blogPages");
+  const mdPages = files.filter((file) => file.endsWith(".md"));
+  const allPages = mdPages.map((page) => page.replace(".md", ""));
+
+  return allPages;
 };
 
 export const getPageContentData = (slug: string): postData => {
@@ -48,7 +61,13 @@ export const getPageContentData = (slug: string): postData => {
   return postData;
 };
 
+export const getAllCategories = async () => {
+  const data = await initializeCategoryData();
 
-export const getAllCategories = () => categoryData.allCategories;
-export const getAllCategoriesData = () => categoryData;
+  return data.allCategories;
+};
+export const getAllCategoriesData = async () => {
+  const data = await initializeCategoryData();
 
+  return data;
+};

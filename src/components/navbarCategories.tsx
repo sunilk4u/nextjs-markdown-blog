@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getAllCategories } from "./getPostMetaData";
 
-const NavbarCategories = () => {
-  const categoryData = getAllCategories();
+const NavbarCategories = async () => {
+  const categoryData = await getAllCategories();
 
   return (
     <ul className="items-center md:h-14 md:flex">

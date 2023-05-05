@@ -6,11 +6,13 @@ const HomePage = () => {
   const data: postPreview[] = getHomePostMetaData();
 
   return (
+    <>
       <div className="m-4">
         {data.map((post) => (
           <PostPreview key={post.slug} post={post} />
         ))}
-    </div>
+      </div>
+    </>
   );
 };
 
