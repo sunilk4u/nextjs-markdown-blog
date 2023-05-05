@@ -5,7 +5,7 @@ import { postPreview } from "@/types/interfaces";
 
 const HomePage = () => {
   const data: postPreview[] = getHomePostMetaData();
-  const postPerPage: any = process.env.postperpage;
+  const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
   const homePosts = data.slice(0, postPerPage);
   const currPage = 1;
 
@@ -15,7 +15,7 @@ const HomePage = () => {
         {homePosts.map((post: any) => (
           <PostPreview key={post.slug} post={post} />
         ))}
-        <Pagination totalPosts={data.length} currentPage={currPage} />
+        {(postPerPage < data.length) && (<Pagination totalPosts={data.length} currentPage={currPage} slug={`posts`} />)}
       </div>
     </>
   );

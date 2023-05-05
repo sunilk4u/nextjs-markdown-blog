@@ -67,8 +67,8 @@ export const getAllCategories = () => {
   return data.allCategories;
 };
 
-export const getAllCategoriesData = async () => {
-  const data = await initializeCategoryData();
+export const getAllCategoriesData = () => {
+  const data = initializeCategoryData();
 
   return data;
 };

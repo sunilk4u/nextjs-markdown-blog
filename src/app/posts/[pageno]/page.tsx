@@ -18,14 +18,15 @@ export const generateStaticParams = async () => {
 
 const PostPages = ({ params }: { params: { pageno: string } }) => {
   const data: postPreview[] = getHomePostMetaData();
-  const postPerPage: any = process.env.postperpage;
+  const postPerPage: number = parseInt(process.env.postperpage as string) || 5; 
   const currPost = (parseInt(params.pageno) - 1) * postPerPage;
   const greater =
-    postPerPage > data.length - currPost
+    postPerPage >= data.length - currPost
       ? data.length - currPost + currPost
-      : postPerPage;
+      : postPerPage + currPost;
   const homePosts = data.slice(currPost, greater);
-
+  console.log(currPost, greater);
+  
   return (
     <>
       <div className="m-4">
@@ -35,6 +36,7 @@ const PostPages = ({ params }: { params: { pageno: string } }) => {
         <Pagination
           totalPosts={data.length}
           currentPage={parseInt(params.pageno)}
+          slug={`posts`}
         />
       </div>
     </>
