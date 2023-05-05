@@ -6,17 +6,22 @@ export const generateStaticParams = async () => {
 
   return pageData.map((page) => ({
     slug: page,
-  }))
-}
+  }));
+};
 
-const Page = ({params}: {params: {slug: string}}) => {
+const Page = ({ params }: { params: { slug: string } }) => {
   const slug: string = params.slug;
   const pageData = getPageContentData(slug);
-    
+
   return (
-    <div>
-      <Markdown>{pageData.content}</Markdown>
-    </div>
+    <article>
+      <h1 className="text-[3.5rem] font-semibold my-1 py-1">
+        {pageData.data.title}
+      </h1>
+      <div className="content prose md:max-w-none prose-xl prose-headings:underline prose-a:text-green-600">
+        <Markdown>{pageData.content}</Markdown>
+      </div>
+    </article>
   );
 };
 
