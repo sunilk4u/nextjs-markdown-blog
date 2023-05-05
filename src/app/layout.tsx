@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar";
 import SiteLinksInfo from "@/components/siteLinksInfo";
 import "../styles/globals.css";
 import NavbarCategories from "@/components/navbarCategories";
+import { getAllCategories } from "@/components/getPostMetaData";
 
 export const metadata = {
   title: process.env.HomePage_Title,

@@ -61,8 +61,8 @@ export const getPageContentData = (slug: string): postData => {
   return pageData;
 };
 
-export const getAllCategories = async () => {
-  const data = await initializeCategoryData();
+export const getAllCategories = () => {
+  const data = initializeCategoryData();
 
   return data.allCategories;
 };
