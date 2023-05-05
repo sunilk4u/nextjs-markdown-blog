@@ -3,6 +3,7 @@ import {
   getAllCategoriesData,
   getPostContentData,
   initializeCategoryData,
+  sortPostsByDate,
 } from "@/components/getPostMetaData";
 import PostPreview from "@/components/postPreview";
 import { postPreview } from "@/types/interfaces";
@@ -24,6 +25,8 @@ const CategoryPage = async ({ params }: { params: { slug: string } }) => {
       return metaData.data;
     })
   );
+
+  sortPostsByDate(categoryPostsData);
 
   return (
     <div>

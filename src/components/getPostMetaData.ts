@@ -37,7 +37,7 @@ export const getHomePostMetaData = (): postPreview[] => {
     const data: any = metaData.data;
     return data;
   });
-
+  sortPostsByDate(allPostMetaData);
   return allPostMetaData;
 };
 
@@ -66,8 +66,20 @@ export const getAllCategories = async () => {
 
   return data.allCategories;
 };
+
 export const getAllCategoriesData = async () => {
   const data = await initializeCategoryData();
 
   return data;
 };
+
+export const sortPostsByDate = (posts: any[]) => {
+  posts.sort((a, b) => {
+    const aDate = new Date(a.date)
+    const bDate = new Date(b.date)
+
+    if(aDate > bDate) return -1;
+    else if(bDate > aDate) return 1;
+    else return 0;
+  });
+}
