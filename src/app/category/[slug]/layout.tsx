@@ -12,7 +12,7 @@ export async function generateMetadata({
 }
 
 export const generateStaticParams = async () => {
-  const catData = await getAllCategories();
+  const catData: string[] = getAllCategories();
 
   return catData.map((cat: string) => ({
     slug: cat.replaceAll(" ", "-"),

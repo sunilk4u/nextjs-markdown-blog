@@ -8,8 +8,8 @@ import NavbarCategories from "@/components/navbarCategories";
 import { getAllCategories } from "@/components/getPostMetaData";
 
 export const metadata = {
-  title: process.env.HomePage_Title,
-  description: process.env.HomePage_Description,
+  title: process.env.HomePage_Title as string || "title",
+  description: process.env.HomePage_Description as string || "description",
 };
 
 export default function RootLayout({

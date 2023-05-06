@@ -1,5 +1,5 @@
 const Footer = () => {
-  const year = new Date().getFullYear();
+  const year: number = new Date().getFullYear();
 
   return (
     <footer className="bg-green-950 h-14 flex items-center justify-center">

@@ -2,12 +2,12 @@ import {
   getHomePostMetaData,
   getPostContentData,
 } from "@/components/getPostMetaData";
-import { postData } from "@/types/interfaces";
+import { postData, postPreview } from "@/types/interfaces";
 import Markdown from "markdown-to-jsx";
 import Link from "next/link";
 
 export const generateStaticParams = async () => {
-  const allPostData = getHomePostMetaData();
+  const allPostData: postPreview[] = getHomePostMetaData();
   return allPostData.map((post) => ({
     slug: post.slug,
   }));

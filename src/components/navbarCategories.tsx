@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllCategories } from "./getPostMetaData";
 
 const NavbarCategories = () => {
-  const categoryData = getAllCategories();
+  const categoryData: string[] = getAllCategories();
 
   return (
     <>

@@ -1,13 +1,13 @@
 import { getHomePostMetaData } from "@/components/getPostMetaData";
 import Pagination from "@/components/pagination";
 import PostPreview from "@/components/postPreview";
-import { postPreview } from "@/types/interfaces";
+import { genParamPageno, postPreview } from "@/types/interfaces";
 
 export const generateStaticParams = async () => {
   const posts: postPreview[] = getHomePostMetaData();
   const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
-  const totalPages = Math.ceil(posts.length / postPerPage);
-  const slugs = [];
+  const totalPages: number = Math.ceil(posts.length / postPerPage);
+  const slugs: genParamPageno[] = [];
   for (let i = 2; i <= totalPages; i++) {
     slugs.push({
       pageno: `${i}`,
@@ -24,7 +24,7 @@ const PostPages = ({ params }: { params: { pageno: string } }) => {
     postPerPage >= data.length - currPost
       ? data.length - currPost + currPost
       : postPerPage + currPost;
-  const homePosts = data.slice(currPost, greater);
+  const homePosts: postPreview[] = data.slice(currPost, greater);
   
   return (
     <>

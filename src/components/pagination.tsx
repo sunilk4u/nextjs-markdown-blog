@@ -9,16 +9,15 @@ const Pagination = ({
   currentPage: number;
   slug: string;
 }) => {
-  const postPerPage: any = process.env.postperpage;
+  const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
   const totalPages = Math.ceil(totalPosts / postPerPage);
 
-  let prevSlug = "";
+  let prevSlug: string = "";
   if(!slug.includes("category")) {
     prevSlug = "/"
   }else {
     prevSlug = slug
   }
-
 
   return (
     <div className="flex my-4 p-5 justify-between">

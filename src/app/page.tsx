@@ -6,7 +6,7 @@ import { postPreview } from "@/types/interfaces";
 const HomePage = () => {
   const data: postPreview[] = getHomePostMetaData();
   const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
-  const homePosts = data.slice(0, postPerPage);
+  const homePosts: postPreview[] = data.slice(0, postPerPage);
   const currPage = 1;
 
   return (

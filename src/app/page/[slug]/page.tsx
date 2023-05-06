@@ -1,8 +1,9 @@
 import { getAllPages, getPageContentData } from "@/components/getPostMetaData";
+import { postData } from "@/types/interfaces";
 import Markdown from "markdown-to-jsx";
 
 export const generateStaticParams = async () => {
-  const pageData = getAllPages();
+  const pageData: string[] = getAllPages();
 
   return pageData.map((page) => ({
     slug: page,
@@ -11,7 +12,7 @@ export const generateStaticParams = async () => {
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const slug: string = params.slug;
-  const pageData = getPageContentData(slug);
+  const pageData: postData = getPageContentData(slug);
 
   return (
     <article>

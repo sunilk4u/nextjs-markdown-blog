@@ -2,7 +2,6 @@ import { postPreview } from "@/types/interfaces";
 import Link from "next/link";
 
 const PostPreview = ({ post }: { post: postPreview }) => {
-  // console.log(post);
   
   return (
     <div key={post.slug} className="border hover:shadow-sm border-gray-400 rounded-xl m-4 p-2 hover:bg-gray-200">

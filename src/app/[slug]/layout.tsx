@@ -7,8 +7,8 @@ export async function generateMetadata({
 }) {
   const data = await getPostContentData(params.slug);
   return {
-    title: data.data.title,
-    description: data.data.description
+    title: (data.data.title as string) || "title",
+    description: (data.data.description as string) || "description",
   };
 }
 

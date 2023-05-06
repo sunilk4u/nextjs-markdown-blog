@@ -1,14 +1,15 @@
 import { getPageContentData } from "@/components/getPostMetaData";
+import { postData } from "@/types/interfaces";
 
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
 }) {
-  const data = getPageContentData(params.slug);
+  const data: postData = getPageContentData(params.slug);
   return {
-    title: data.data.title,
-    description: data.data.description ?? ""
+    title: data.data.title as string || "title",
+    description: data.data.description as string || "description"
   };
 }
 

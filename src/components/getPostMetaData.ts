@@ -1,20 +1,25 @@
-import { postData, postPreview } from "@/types/interfaces";
+import {
+  categoryData,
+  markdownData,
+  mdnJsonData,
+  postData,
+  postPreview,
+} from "@/types/interfaces";
 import fs from "fs";
 import matter from "gray-matter";
 
 const files = fs.readdirSync("src/posts");
 const mdPosts = files.filter((file) => file.endsWith(".md"));
 
-
-export const initializeCategoryData = () => {
+export const initializeCategoryData = (): categoryData => {
   const allCategories: string[] = [];
-  const categoryData: any = {
+  const categoryData: categoryData = {
     allCategories,
     data: {},
   };
-  
+
   mdPosts.map((post) => {
-    const postData = matter.read("src/posts/" + post);
+    const postData: markdownData = matter.read("src/posts/" + post);
 
     postData.data.categories.forEach((category: string) => {
       category = category.replaceAll(" ", "-");
@@ -31,23 +36,22 @@ export const initializeCategoryData = () => {
 
 export const getHomePostMetaData = (): postPreview[] => {
   const allPostMetaData: postPreview[] = mdPosts.map((post) => {
-    const metaData = matter.read("src/posts/" + post);
-    const slug = post.replace(".md", "");
+    const metaData: markdownData = matter.read("src/posts/" + post);
+    const slug: string = post.replace(".md", "");
     metaData.data.slug = slug;
-    const data: any = metaData.data;
-    return data;
+    return metaData.data;
   });
   sortPostsByDate(allPostMetaData);
   return allPostMetaData;
 };
 
-export const getPostContentData = async (slug: string) => {
-  const postData: any = matter.read("src/posts/" + slug + ".md");
+export const getPostContentData = async (slug: string): Promise<postData> => {
+  const postData: markdownData = matter.read("src/posts/" + slug + ".md");
   postData.data.slug = slug;
   return postData;
 };
 
-export const getAllPages = () => {
+export const getAllPages = (): string[] => {
   const files = fs.readdirSync("src/blogPages");
   const mdPages = files.filter((file) => file.endsWith(".md"));
   const allPages = mdPages.map((page) => page.replace(".md", ""));
@@ -56,30 +60,30 @@ export const getAllPages = () => {
 };
 
 export const getPageContentData = (slug: string): postData => {
-  const pageData: any = matter.read("src/blogPages/" + slug + ".md");
+  const pageData: markdownData = matter.read("src/blogPages/" + slug + ".md");
   pageData.data.slug = slug;
   return pageData;
 };
 
-export const getAllCategories = () => {
-  const data = initializeCategoryData();
+export const getAllCategories = (): string[] => {
+  const data: categoryData = initializeCategoryData();
 
   return data.allCategories;
 };
 
-export const getAllCategoriesData = async () => {
-  const data = await initializeCategoryData();
+export const getAllCategoriesData = (): categoryData => {
+  const data: categoryData = initializeCategoryData();
 
   return data;
 };
 
-export const sortPostsByDate = (posts: any[]) => {
+export const sortPostsByDate = (posts: postPreview[]) => {
   posts.sort((a, b) => {
-    const aDate = new Date(a.date)
-    const bDate = new Date(b.date)
+    const aDate = new Date(a.date);
+    const bDate = new Date(b.date);
 
-    if(aDate > bDate) return -1;
-    else if(bDate > aDate) return 1;
+    if (aDate > bDate) return -1;
+    else if (bDate > aDate) return 1;
     else return 0;
   });
-}
+};

@@ -5,19 +5,19 @@ import {
 } from "@/components/getPostMetaData";
 import Pagination from "@/components/pagination";
 import PostPreview from "@/components/postPreview";
-import { postPreview } from "@/types/interfaces";
+import { categoryData, genParamPageno, postPreview } from "@/types/interfaces";
 
 export const generateStaticParams = async ({
   params,
 }: {
   params: { slug: string };
 }) => {
-  const dataIn = await getAllCategoriesData();
+  const dataIn: categoryData = getAllCategoriesData();
   const data = dataIn.data[params.slug];
-  const postPerPage: any = process.env.postperpage;
+  const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
   
   const totalPages = Math.ceil(data.length / postPerPage);
-  const slugs = [];
+  const slugs: genParamPageno[] = [];
   for (let i = 2; i <= totalPages; i++) {
     slugs.push({
       pageno: `${i}`,
@@ -32,7 +32,7 @@ const CategoryPage = async ({
 }: {
   params: { pageno: string; slug: string };
 }) => {
-  const dataIn = await getAllCategoriesData();
+  const dataIn: categoryData = getAllCategoriesData();
   const data = dataIn.data;
   
   const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
@@ -52,7 +52,7 @@ const CategoryPage = async ({
     
   sortPostsByDate(categoryPostsData);
 
-  const homePosts = categoryPostsData.slice(currPost, greater);
+  const homePosts: postPreview[] = categoryPostsData.slice(currPost, greater);
 
   return (
     <>
