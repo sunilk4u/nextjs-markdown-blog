@@ -1,21 +1,13 @@
 import {
-  getAllCategories,
   getAllCategoriesData,
   getPostContentData,
-  initializeCategoryData,
   sortPostsByDate,
 } from "@/components/getPostMetaData";
 import Pagination from "@/components/pagination";
 import PostPreview from "@/components/postPreview";
 import { postPreview } from "@/types/interfaces";
 
-export const generateStaticParams = async () => {
-  const catData = await getAllCategories();
 
-  return catData.map((cat: string) => ({
-    slug: cat.replaceAll(" ", "-"),
-  }));
-};
 
 const CategoryPage = async ({ params }: { params: { slug: string } }) => {
   const categoryData = await getAllCategoriesData();

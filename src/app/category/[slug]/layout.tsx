@@ -1,3 +1,5 @@
+import { getAllCategories } from "@/components/getPostMetaData";
+
 export async function generateMetadata({
   params,
 }: {
@@ -8,6 +10,14 @@ export async function generateMetadata({
     description: "Category description" + params.slug.replaceAll("-", " "),
   };
 }
+
+export const generateStaticParams = async () => {
+  const catData = await getAllCategories();
+
+  return catData.map((cat: string) => ({
+    slug: cat.replaceAll(" ", "-"),
+  }));
+};
 
 export default function postlayout({
   children,

@@ -5,7 +5,7 @@ import { postPreview } from "@/types/interfaces";
 
 export const generateStaticParams = async () => {
   const posts: postPreview[] = getHomePostMetaData();
-  const postPerPage: any = process.env.postperpage;
+  const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
   const totalPages = Math.ceil(posts.length / postPerPage);
   const slugs = [];
   for (let i = 2; i <= totalPages; i++) {
@@ -25,7 +25,6 @@ const PostPages = ({ params }: { params: { pageno: string } }) => {
       ? data.length - currPost + currPost
       : postPerPage + currPost;
   const homePosts = data.slice(currPost, greater);
-  console.log(currPost, greater);
   
   return (
     <>

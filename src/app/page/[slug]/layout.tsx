@@ -5,7 +5,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const data = await getPageContentData(params.slug);
+  const data = getPageContentData(params.slug);
   return {
     title: data.data.title,
     description: data.data.description ?? ""

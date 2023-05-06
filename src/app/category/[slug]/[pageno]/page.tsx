@@ -7,20 +7,40 @@ import Pagination from "@/components/pagination";
 import PostPreview from "@/components/postPreview";
 import { postPreview } from "@/types/interfaces";
 
-// export const generateStaticParams = async () => {};
+export const generateStaticParams = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
+  const dataIn = await getAllCategoriesData();
+  const data = dataIn.data[params.slug];
+  const postPerPage: any = process.env.postperpage;
+  
+  const totalPages = Math.ceil(data.length / postPerPage);
+  const slugs = [];
+  for (let i = 2; i <= totalPages; i++) {
+    slugs.push({
+      pageno: `${i}`,
+    });
+  }
+  return slugs;
+};
+
 
 const CategoryPage = async ({
   params,
 }: {
   params: { pageno: string; slug: string };
 }) => {
-  const dataIn = getAllCategoriesData();
+  const dataIn = await getAllCategoriesData();
   const data = dataIn.data;
+  
   const postPerPage: number = parseInt(process.env.postperpage as string) || 5;
   const currPost = (parseInt(params.pageno) - 1) * postPerPage;
+  const dataLen = data[params.slug].length;
   const greater =
-    postPerPage >= data[params.slug].length - currPost
-      ? data[params.slug].length - currPost + currPost
+    postPerPage >= dataLen - currPost
+      ? dataLen - currPost + currPost
       : postPerPage + currPost;
 
   const categoryPostsData: postPreview[] = await Promise.all(
@@ -29,7 +49,7 @@ const CategoryPage = async ({
       return metaData.data;
     })
   );
-
+    
   sortPostsByDate(categoryPostsData);
 
   const homePosts = categoryPostsData.slice(currPost, greater);
@@ -41,7 +61,7 @@ const CategoryPage = async ({
           <PostPreview key={post.slug} post={post} />
         ))}
         <Pagination
-          totalPosts={data[params.slug].length}
+          totalPosts={dataLen}
           currentPage={parseInt(params.pageno)}
           slug={`category/${params.slug}`}
         />
