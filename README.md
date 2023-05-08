@@ -3,7 +3,7 @@
 
 ## About
 
-This is static blog created using static site generation (SSG) in Next.js. This blog has features like pagination, auto create categories, static html export.
+Next.Js Markdown Blog created using static site generation (SSG) in Next.js. This blog has features like pagination, auto create categories, static html export.
 
 ## Packages  Used
 
