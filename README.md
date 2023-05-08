@@ -1,3 +1,6 @@
+# Next.Js Markdown Blog (SSG)
+
+
 ## About
 
 This is static blog created using static site generation (SSG) in Next.js. This blog has features like pagination, auto create categories, static html export.
@@ -15,7 +18,7 @@ This is static blog created using static site generation (SSG) in Next.js. This 
 
 ### Set Environment Variables
 
-```javascript
+``` 
 HomePage_Title=Techy Tubs
 HomePage_Description=Techy Tubs is tech blog website.
 blogUrl=Techytubs.com
@@ -69,16 +72,16 @@ public
 
 ### Homepage
 
-![home](/home/sunilk/Development/thecuriouscorp/screenshots/home.png)
+![home](./screenshots/home.png)
 
 ### Post Page
 
-![post](/home/sunilk/Development/thecuriouscorp/screenshots/post.png)
+![post](./screenshots/post.png)
 
 ### Category Page
 
-![category](/home/sunilk/Development/thecuriouscorp/screenshots/category.png)
+![category](./screenshots/category.png)
 
 ### Pagination
 
-![pagination](/home/sunilk/Development/thecuriouscorp/screenshots/pagination.png)
+![pagination](./screenshots/pagination.png)
